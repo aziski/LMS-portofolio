@@ -17,6 +17,26 @@ export const register = async (req, res, next) => {
         })
         res.json({message: 'Successful add Super Admin'})
     }else {
-        return next(new errCustom(404, 'Not found register data'))
+        return next(new errCustom(404, 'Tolong isi semua data'))
+    }
+}
+
+export const login = async (req, res, next) => {
+    const {username, password} = req.body
+
+    if(username && password) {
+        const checkUsername = await Account.findOne({Username: username})
+        if(checkUsername) {
+            const checkPw = await bcrypt.compare(password, checkUsername.Password)
+            if(checkPw) {
+                res.json({valid: true})
+            }else {
+                return next(new errCustom(400, 'Username atau Password anda salah'))    
+            }
+        }else {
+            return next(new errCustom(400, 'Username atau Password anda salah'))
+        }
+    }else {
+        return next(new errCustom(404, 'Silahkan masukan username dan password anda'))
     }
 }
