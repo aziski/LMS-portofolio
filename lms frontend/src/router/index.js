@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import login from '@/views/login.vue'
 import register from '@/views/register.vue'
 import dashboard from '@/views/dashboard.vue'
-import buku from '@/views/Buku.vue'
+import buku from '@/views/buku.vue'
 import anggota from '@/views/anggota.vue'
 import transaksi from '@/views/transaksi.vue'
-import tambahStaf from '@/views/tambahStaf.vue'
+import pengaturan from '@/views/pengaturan.vue'
+import bukuDipinjam from '@/views/bukuDipinjam.vue'
+import pengajuan from '@/views/pengajuan.vue'
 import { useAccountStore } from '@/stores/accountStore'
 
 const router = createRouter({
@@ -34,6 +36,12 @@ const router = createRouter({
       meta: {requiredAuth: true}
     },
     {
+      path: '/bukuDipinjam',
+      name: 'Buku dipinjam',
+      component: bukuDipinjam,
+      meta: {requiredAuth: true}
+    },
+    {
       path: '/anggota',
       name: 'Anggota',
       component: anggota,
@@ -46,9 +54,15 @@ const router = createRouter({
       meta: {requiredAuth: true}
     },
     {
-      path: '/tambahStaf',
-      name: 'Tambah staf',
-      component: tambahStaf,
+      path: '/pengajuan',
+      name: 'Pengajuan',
+      component: pengajuan,
+      meta: {requiredAuth: true}
+    },
+    {
+      path: '/pengaturan',
+      name: 'Pengaturan',
+      component: pengaturan,
       meta: {requiredAuth: true}
     },
   ],

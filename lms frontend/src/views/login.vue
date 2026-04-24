@@ -18,11 +18,14 @@
             })
             router.push('/dashboard')
             accountStore.isLogin = response.data.valid
+            accountStore.userData = response.data.userData
         } catch (error) {
             if(error.response && error.response.data && error.response.data.message) {
                 alert(error.response.data.message)
             }
-        }        
+        }
+        username.value = ''
+        password.value = ''  
     }
 </script>
 

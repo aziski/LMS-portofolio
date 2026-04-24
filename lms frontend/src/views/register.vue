@@ -1,8 +1,9 @@
 <script setup>
-    import { RouterLink } from 'vue-router';
+    import { RouterLink, useRouter } from 'vue-router';
     import { ref } from 'vue';
     import axios from 'axios';
 
+    const router = useRouter()
     const nama = ref('')
     const jenisKelamin = ref('')
     const tanggalLahir = ref('')
@@ -17,10 +18,12 @@
                 nama: nama.value.toLocaleLowerCase(),
                 jenisKelamin: jenisKelamin.value,
                 tanggalLahir: tanggalLahir.value,
-                username: username.value,
+                username: username.value.toLowerCase(),
                 password: password.value
             })
             alert(response.data.message)
+            router.push('/')
+
         }else {
             alert('Pastikan anda memasukan password yang sama pada konfirmasi password')
         }
