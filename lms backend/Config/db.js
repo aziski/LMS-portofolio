@@ -1,8 +1,10 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import mongoose from 'mongoose'
 
 async function connectDB() {
     try {
-        mongoose.connect('mongodb://127.0.0.1:27017/lms')
+        mongoose.connect(process.env.MONGO_URL)
         console.log('Connected to database')
     } catch (error) {
         alert(error.message)

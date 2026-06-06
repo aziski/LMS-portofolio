@@ -1,5 +1,5 @@
 import router from "@/router";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const api = axios.create({
     withCredentials: true

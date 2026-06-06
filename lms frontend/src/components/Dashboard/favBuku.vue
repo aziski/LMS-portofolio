@@ -1,3 +1,22 @@
+<script setup>
+    import { onMounted, ref } from 'vue';
+    import axios from 'axios';
+    import defaultCover from '@/components/icons/no cover.png'
+
+    const books = ref([])
+
+    // onMounted(async () => {
+    //     try {
+    //         const key = import.meta.env.VITE_BOOKS_API_KEY
+    //         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:programming&maxResults=20&key=${key}`)
+    //         books.value = response.data.items
+    //         console.log(books.value)
+    //     } catch (error) {
+    //         alert(error.message)
+    //     }
+    // })
+</script>
+
 <template>
     <div class="bg-white rounded-xl p-4 shadow-md">
         <p class="text-lg font-bold">Buku Tervavorit</p>

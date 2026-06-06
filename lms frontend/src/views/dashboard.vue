@@ -5,7 +5,7 @@
     import chart from '@/components/Dashboard/chart.vue';
     import aktivitas from '@/components/Dashboard/aktivitas.vue';
     import favBuku from '@/components/Dashboard/favBuku.vue';
-import Dipinjam from '@/components/Dashboard/dipinjam.vue';
+    import rekomendasi from '@/components/Dashboard/rekomendasi.vue';
 
     const accountStore = useAccountStore()
 
@@ -44,12 +44,12 @@ import Dipinjam from '@/components/Dashboard/dipinjam.vue';
                 </div>
             </div>
         </div>
-        <!-- Chart & Activity -->
+        <!-- Widgets -->
         <div class="w-full min-h-80 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 mt-6">
             <favBuku v-if="accountStore.userData.Role === 'admin' || accountStore.userData.Role === 'user'" />    
             <aktivitas v-if="accountStore.userData.Role === 'admin' || accountStore.userData.Role === 'user'" />
         </div>
         <chart :dataChart="dataChart" v-if="accountStore.userData.Role === 'admin'" />
-        <dipinjam v-if="accountStore.userData.Role === 'user'" />
+        <rekomendasi v-if="accountStore.userData.Role === 'user'" />
     </div>
 </template>

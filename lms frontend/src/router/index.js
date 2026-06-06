@@ -4,10 +4,11 @@ import register from '@/views/register.vue'
 import dashboard from '@/views/dashboard.vue'
 import buku from '@/views/buku.vue'
 import anggota from '@/views/anggota.vue'
-import transaksi from '@/views/transaksi.vue'
+import riwayat from '@/views/riwayat.vue'
 import pengaturan from '@/views/pengaturan.vue'
 import bukuDipinjam from '@/views/bukuDipinjam.vue'
 import pengajuan from '@/views/pengajuan.vue'
+import laporan from '@/views/laporan.vue'
 import { useAccountStore } from '@/stores/accountStore'
 
 const router = createRouter({
@@ -48,9 +49,15 @@ const router = createRouter({
       meta: {requiredAuth: true}
     },
     {
-      path: '/transaksi',
-      name: 'Transaksi',
-      component: transaksi,
+      path: '/riwayat',
+      name: 'Riwayat & Denda',
+      component: riwayat,
+      meta: {requiredAuth: true}
+    },
+    {
+      path: '/laporan',
+      name: 'Laporan & Denda',
+      component: laporan,
       meta: {requiredAuth: true}
     },
     {
