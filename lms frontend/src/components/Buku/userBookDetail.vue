@@ -3,8 +3,11 @@
     import { computed, ref } from 'vue';
     import defaultCover from '@/components/icons/no cover.png'
     import { useBookStore } from '@/stores/bookStore.js';
+    import api from '@/api';
+    import { useAccountStore } from '@/stores/accountStore';
 
     const bookStore = useBookStore()
+    const accountStore = useAccountStore()
     const props = defineProps(['item'])
 
     const bookInfo = computed(() => [
@@ -14,6 +17,20 @@
         {icon: Languages, tag: 'Bahasa', value: `${props.item.Bahasa} (English)`},
         {icon: Info, tag: 'Status', value: props.item.Stok? 'Tersedia' : 'Tidak tersedia', class: props.item.Stok > 0 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}
     ]) 
+
+    const addFavBook = async (userID, bookID, bookName) => {
+        try {
+            const response = await api.patch(`http://localhost:5003/api/account/favBook/${userID}`, {
+                bookID: bookID,
+                bookName: bookName
+            })
+            alert(response.data.message)
+        } catch (error) {
+            if(error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message)
+            }
+        }
+    }
 </script>
 
 <template>
@@ -30,8 +47,12 @@
                     <div class=" justify-self-center md:justify-self-auto w-65 flex flex-col items-center gap-10">
                         <img :src="item.Sampul ? (item.Sampul.startsWith('http') ? item.Sampul : `http://localhost:5003/sampul/${item.Sampul}`) : defaultCover" alt="not found image" class="w-full h-70">
                         <div class="w-full flex flex-col gap-3">
-                            <button :class="['py-3 px-5 rounded-lg flex items-center justify-center text-center gap-3 leading-none', item.Stok_tersedia? 'bg-blue-500 text-white cursor-pointer hover:bg-blue-600' : 'bg-gray-200 text-gray-400 cursor-not-allowed']"><component :is="BookOpen" :size="20" /> Pinjam Buku</button>
-                            <button class="py-3 px-5 border-2 rounded-lg cursor-pointer hover:bg-yellow-300 hover:transition-colors hover:duration-200 hover:border-none flex items-center justify-center text-center gap-3 leading-none"><component :is="Bookmark" :size="20" /> Tambah ke favorit</button>
+                            <button :class="['py-3 px-5 rounded-lg flex items-center justify-center text-center gap-3 leading-none', item.Stok_tersedia? 'bg-blue-500 text-white cursor-pointer hover:bg-blue-600' : 'bg-gray-200 text-gray-400 cursor-not-allowed']">
+                                <component :is="BookOpen" :size="20" /> Pinjam Buku
+                            </button>
+                            <button @click="addFavBook(accountStore.userData._id, item._id, item.Judul)" class="py-3 px-5 border-2 rounded-lg cursor-pointer hover:bg-yellow-300 hover:transition-colors hover:duration-200 hover:border-none flex items-center justify-center text-center gap-3 leading-none">
+                                <component :is="Bookmark" :size="20" /> Tambah ke favorit
+                            </button>
                         </div>
                     </div>
                     <!-- Book info & Description -->

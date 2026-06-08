@@ -45,7 +45,7 @@
             </div>
         </div>
         <!-- Widgets -->
-        <div class="w-full min-h-80 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 mt-6">
+        <div class="w-full h-130 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 mt-6">
             <favBuku v-if="accountStore.userData.Role === 'admin' || accountStore.userData.Role === 'user'" />    
             <aktivitas v-if="accountStore.userData.Role === 'admin' || accountStore.userData.Role === 'user'" />
         </div>

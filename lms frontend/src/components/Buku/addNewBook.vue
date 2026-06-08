@@ -68,7 +68,7 @@
 <template>
     <teleport to='body'>
         <div class="bg-black/20 fixed top-0 left-0 right-0 bottom-0 flex z-50 justify-center items-center py-5">
-            <div class="bg-white w-[80%] md:w-[70%] lg:w-[50%] max-h-full py-4 px-3 rounded-xl flex flex-col items-center gap-5 overflow-y-auto">
+            <div class="bg-white w-[80%] md:w-[70%] lg:w-[50%] max-h-full py-4 px-3 rounded-xl flex flex-col items-center gap-2 overflow-y-auto">
                 <div class="w-full flex justify-end">
                     <component :is="X" :size="20" @click="bookStore.isShowAddBook = false" class="cursor-pointer" />
                 </div>

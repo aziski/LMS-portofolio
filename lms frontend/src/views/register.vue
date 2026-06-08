@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <div class="w-full h-screen flex justify-center items-center">
+    <div class="w-full h-auto flex justify-center">
         <div class="bg-white w-[90%] md:w-[60%] lg:w-[40%] flex flex-col justify-center items-center py-4 px-4 rounded-xl shadow-2xl">
             <div class="h-13 flex items-center justify-between gap-5">
                 <img src="../components/icons/register.png" alt="Not found image" class="h-full">
